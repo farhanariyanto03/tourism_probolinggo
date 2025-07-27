@@ -24,7 +24,7 @@ export default function Hero() {
             Jelajahi Keajaiban
             <span className="block text-orange-400 mt-2">Probolinggo</span>
           </h1>
-          <p className="text-gray-200 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed animate-fade-in-up delay-200 mb-8">
+          <p className="text-gray-200 text-lg md:text-xl lg:text-xl max-w-3xl mx-auto leading-relaxed animate-fade-in-up delay-200 mb-8">
             Dari puncak Gunung Bromo yang memukau hingga kelezatan kuliner khas yang menggugah selera. Temukan pesona
             alam dan cita rasa autentik Probolinggo yang tak terlupakan.
           </p>
