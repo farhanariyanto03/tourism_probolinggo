@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Users, MapPin, Award, Camera, icons } from "lucide-react";
+import { stat } from "fs";
 
 const stats = [
   {
@@ -38,7 +39,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
-              Tentang <span className="text-orange-500">Probolinggo</span>
+              Tentang <span className="text-orange-500" style={{ fontFamily: "Pacifico, cursive" }}>Probolinggo</span>
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
               Probolinggo adalah kota yang memukau di Jawa Timur, terkenal
@@ -52,6 +53,20 @@ export default function About() {
               terlupakan bagi setiap pengunjung yang datang untuk menjelajahi
               pesona Jawa Timur.
             </p>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-orange-100 rounded-full mb-3">
+                    <stat.icon className="w-6 h-6 text-orange-500" aria-hidden />
+                  </div>
+                  <div className="text-2xl font-bold text-gray-800 mb-1">{stat.number}</div>
+                  <div className="text-sm font-medium text-gray-700 mb-1">{stat.label}</div>
+                  <div className="text-xs text-gray-500">{stat.description}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

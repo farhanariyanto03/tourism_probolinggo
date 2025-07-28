@@ -9,7 +9,7 @@ export default function Home() {
       <section id="home">
         <Hero />
       </section>
-      <section>
+      <section id="about">
         <About />
       </section>
     </>
