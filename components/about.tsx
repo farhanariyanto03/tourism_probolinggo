@@ -68,6 +68,32 @@ export default function About() {
               ))}
             </div>
           </div>
+
+          {/* image */}
+          <div className="relative">
+            <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/assets/images/bromo1.jpg"
+                alt="Pemandangan Probolinggo"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gray-500/60 hover:bg-transparent" />
+            </div>
+
+            {/* Floating Card */}
+            <div className="absolute -bottom-6 -left-6 bg-white p-3 rounded-xl shadow-xl">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <div className="font-bold text-gray-800">Destinasi Terfavorit</div>
+                  <div className="text-sm text-gray-600">Jawa Timur 2024</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
