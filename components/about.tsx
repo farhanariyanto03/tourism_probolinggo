@@ -33,7 +33,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-20 bg-gradient-to-b from-white to-gray-50"
+      className="py-20 bg-white"
     >
       <div className="container mx-auto px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
