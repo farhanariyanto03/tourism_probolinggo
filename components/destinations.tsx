@@ -7,7 +7,7 @@ const destinations = [
     name: "Gunung Bromo",
     description:
       "Nikmati sunrise spektakuler di kawah aktif yang paling terkenal di Indonesia",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/assets/images/bromo1.jpg",
     rating: 4.9,
     duration: "1-2 hari",
     category: "Gunung",
@@ -18,7 +18,7 @@ const destinations = [
     id: 2,
     name: "Pantai Bentar",
     description: "Jembatan kayu eksotis dengan pemandangan sunset yang memukau",
-    image: "/assets/images/pantai-bentar.jpeg",
+    image: "/assets/images/bromo1.jpg",
     rating: 4.7,
     duration: "3-4 jam",
     category: "Pantai",
@@ -30,7 +30,7 @@ const destinations = [
     name: "Air Terjun Madakaripura",
     description:
       "Air terjun tertinggi di Jawa Timur dengan keindahan alam yang menakjubkan",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/assets/images/bromo1.jpg",
     rating: 4.8,
     duration: "4-5 jam",
     category: "Air Terjun",
@@ -41,7 +41,7 @@ const destinations = [
     id: 4,
     name: "Bukit Teletubbies",
     description: "Padang rumput hijau yang menyerupai setting film Teletubbies",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/assets/images/hero.jpeg",
     rating: 4.6,
     duration: "2-3 jam",
     category: "Bukit",
@@ -53,7 +53,7 @@ const destinations = [
     name: "Kawah Ijen",
     description:
       "Fenomena blue fire yang langka dan danau kawah berwarna tosca",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/assets/images/bromo1.jpg",
     rating: 4.9,
     duration: "1-2 hari",
     category: "Kawah",
@@ -65,7 +65,7 @@ const destinations = [
     name: "Ranu Pani",
     description:
       "Danau alami di kaki Gunung Semeru dengan pemandangan yang menenangkan",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/assets/images/bromo1.jpg",
     rating: 4.5,
     duration: "5-6 jam",
     category: "Danau",
@@ -100,20 +100,24 @@ export default function Destinations() {
         </div>
 
         {/* featured destinations */}
-        <div className="mb-16">
+        <div className="mb-16 px-6">
           <h3 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2">
             <Star className="w-6 h-6 text-orange-500 fill-orange-500" />
             Destinasi Unggulan
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {featuredDestinations.map((destination, index) => (
+            {featuredDestinations.map((destination) => (
               <div
                 key={destination.id}
                 className={`group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-3 ${
-                  index === 0 ? "lg:col-span-2 lg:row-span-2" : ""
+                  destination.id === 1 ? "lg:col-span-2 lg:row-span-2" : ""
                 }`}
               >
-                <div className={`relative ${index === 0 ? "h-96 lg:h-full" : "h-80"} overflow-hidden`}>
+                <div
+                  className={`relative ${
+                    destination.id === 1 ? "h-96 lg:h-full" : "h-80"
+                  } overflow-hidden`}
+                >
                   <Image
                     src={destination.image || "/placeholder.svg"}
                     alt={destination.name}
@@ -142,7 +146,9 @@ export default function Destinations() {
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-orange-300 transition-colors">
                       {destination.name}
                     </h3>
-                    <p className="text-gray-200 mb-4 line-clamp-2">{destination.description}</p>
+                    <p className="text-gray-200 mb-4 line-clamp-2">
+                      {destination.description}
+                    </p>
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4 text-sm">
@@ -155,16 +161,73 @@ export default function Destinations() {
                           <span>Probolinggo</span>
                         </div>
                       </div>
-                      <div className="text-orange-300 font-bold">{destination.price}</div>
+                      <div className="text-orange-300 font-bold">
+                        {destination.price}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* regular destinations */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-gray-800 mb-8">
+              Destinasi Lainnya
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {regularDestinations.map((destination) => (
+                <div
+                  key={destination.id}
+                  className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group"
+                >
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      src={destination.image || "/placeholder.svg"}
+                      alt={destination.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      {destination.category}
+                    </div>
+                    <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-2 py-1 rounded-lg flex items-center gap-1">
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <span className="text-sm font-medium">
+                        {destination.rating}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-orange-500 transition-colors">
+                      {destination.name}
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-2">
+                      {destination.description}
+                    </p>
+
+                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        <span>{destination.duration}</span>
+                      </div>
+                      <div className="text-orange-600 font-bold">
+                        {destination.price}
+                      </div>
+                    </div>
+
+                    <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-medium py-3 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105">
+                      Lihat Detail
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

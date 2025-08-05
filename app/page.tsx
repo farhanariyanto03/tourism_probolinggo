@@ -1,4 +1,5 @@
 import About from "@/components/about";
+import Culinary from "@/components/culinary";
 import Destinations from "@/components/destinations";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
@@ -15,6 +16,9 @@ export default function Home() {
       </section>
       <section id="destinations"> 
         <Destinations />
+      </section>
+      <section id="culinary">
+        <Culinary />
       </section>
     </>
   );
