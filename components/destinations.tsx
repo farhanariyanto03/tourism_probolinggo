@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MapPin, Clock, Star, Camera, Heart, Key } from "lucide-react";
+import { MapPin, Clock, Star, Camera, Heart } from "lucide-react";
 
 const destinations = [
   {
