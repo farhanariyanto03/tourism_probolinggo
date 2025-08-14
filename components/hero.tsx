@@ -8,7 +8,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/assets/images/hero.jpeg"
+          src="/assets/images/destination/hero.jpeg"
           alt="Pemandangan Gunung Bromo Probolinggo"
           fill
           className="object-cover"

@@ -1,111 +1,132 @@
-import Image from "next/image"
-import { Utensils, Star, Clock, Flame, Tag, MapPin, Heart } from 'lucide-react'
+import Image from "next/image";
+import { Utensils, Star, Clock, Flame, Tag, MapPin, Heart } from "lucide-react";
+// import LeafletMap, { type MarkerData } from "./leaflet-map";
 
 type Item = {
-  id: number
-  name: string
-  description: string
-  image: string
-  price: string
-  category: string
-  spicyLevel: 0 | 1 | 2 | 3
-  cookTime: string
-  rating: number
-  featured: boolean
-  tags: string[]
-}
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  price: string;
+  category: string;
+  spicyLevel: 0 | 1 | 2 | 3;
+  cookTime: string;
+  rating: number;
+  featured: boolean;
+  tags: string[];
+  // position: [number, number];
+};
 
 const items: Item[] = [
   {
     id: 1,
     name: "Rujak Cingur",
-    description: "Paduan sayuran segar, petis, dan cingur gurih dengan cita rasa pedas legit.",
-    image: "/assets/images/rujak-cingur.jpg",
-    price: "Rp 15.000 - 25.000",
+    description:
+      "Paduan sayuran segar, petis, dan cingur gurih dengan cita rasa pedas legit.",
+    image: "/assets/images/makanan/rujak-cingur.jpg",
+    price: "Rp 20.000 - 30.000",
     category: "Makanan Tradisional",
-    spicyLevel: 3,
+    spicyLevel: 1,
     cookTime: "15 menit",
     rating: 4.8,
     featured: true,
     tags: ["Gurih", "Pedas", "Autentik"],
+    // position: [-7.941558241556708, 112.95331253555966],
   },
   {
     id: 2,
-    name: "Soto Probolinggo",
-    description: "Kuah bening segar, daging empuk, daun seledri, dan bawang goreng harum.",
-    image: "/assets/images/rawon-nguling.jpg",
-    price: "Rp 12.000 - 18.000",
-    category: "Soto",
+    name: "Rawon Nguling",
+    description:
+      "Kuah hitam kluwek yang kaya rasa dengan potongan daging sapi empuk.",
+    image: "/assets/images/makanan/rawon-nguling.jpg",
+    price: "Rp 15.000 - 20.000",
+    category: "Makanan Berkuah",
     spicyLevel: 2,
     cookTime: "30 menit",
     rating: 4.7,
     featured: true,
     tags: ["Hangat", "Rempah", "Segar"],
+    // position: [-7.941558241556708, 112.95331253555966],
   },
   {
     id: 3,
-    name: "Rawon Probolinggo",
-    description: "Kuah hitam kluwek yang kaya rasa dengan potongan daging sapi empuk.",
-    image: "/assets/images/rawon-nguling.jpg",
-    price: "Rp 18.000 - 25.000",
+    name: "Ketan Kratok",
+    description:
+      "Ketan pulut dengan campuran kelapa parut dan gula merah, disajikan hangat.",
+    image: "/assets/images/makanan/ketan kratok.jpg",
+    price: "Rp 20.000 - 30.000",
     category: "Makanan Berkuah",
-    spicyLevel: 2,
+    spicyLevel: 0,
     cookTime: "45 menit",
     rating: 4.9,
     featured: false,
-    tags: ["Rempah", "Gurih"],
+    tags: ["Gurih", "Manis"],
+    // position: [-7.941558241556708, 112.95331253555966],
   },
   {
     id: 4,
-    name: "Tape Singkong",
-    description: "Tape singkong manis lembut dengan aroma fermentasi khas, nikmat sebagai penutup.",
-    image: "/assets/images/rawon-nguling.jpg",
-    price: "Rp 8.000 - 12.000",
-    category: "Makanan Manis",
+    name: "Bakso Eddy Probolinggo",
+    description:
+      "Bakso daging sapi kenyal dengan kuah segar, disajikan dengan mie dan sayuran.",
+    image: "/assets/images/makanan/bakso eddy.jpg",
+    price: "Rp 15.000 - 25.000",
+    category: "Makanan Kuah",
     spicyLevel: 0,
     cookTime: "5 menit",
     rating: 4.5,
     featured: false,
-    tags: ["Manis", "Lembut"],
+    tags: ["Hangat", "Gurih"],
+    // position: [-7.941558241556708, 112.95331253555966],
   },
   {
     id: 5,
-    name: "Kerupuk Rambak",
-    description: "Kerupuk kulit sapi renyah, cocok untuk camilan atau teman makan.",
-    image: "/assets/images/rawon-nguling.jpg",
-    price: "Rp 10.000 - 15.000",
-    category: "Camilan",
-    spicyLevel: 1,
+    name: "Bebek Goreng Bu Lely",
+    description:
+      "Bebek goreng crispy dengan sambal khas, disajikan dengan nasi dan lalapan.",
+    image: "/assets/images/makanan/bebek goreng.jpg",
+    price: "Rp 25.000 - 35.000",
+    category: "Makanan Berat",
+    spicyLevel: 2,
     cookTime: "10 menit",
     rating: 4.4,
     featured: false,
-    tags: ["Renyah", "Gurih"],
+    tags: ["Rempah", "Gurih"],
+    // position: [-7.941558241556708, 112.95331253555966],
   },
   {
     id: 6,
-    name: "Es Dawet Ireng",
-    description: "Cendol hitam, santan creamy, dan gula merah: dingin menyegarkan di siang hari.",
-    image: "/assets/images/rawon-nguling.jpg",
-    price: "Rp 8.000 - 12.000",
-    category: "Minuman",
+    name: "Soto Ayam Pak Koya",
+    description:
+      "Kuah bening dengan potongan ayam, sayuran, dan bumbu rempah yang kaya.",
+    image: "/assets/images/makanan/soto ayam.jpeg",
+    price: "Rp 15.000 - 20.000",
+    category: "Makanan Berkuah",
     spicyLevel: 0,
     cookTime: "5 menit",
     rating: 4.6,
     featured: false,
-    tags: ["Segar", "Manis", "Dingin"],
+    tags: ["Gurih", "Rempah", "Hangat"],
+    // position: [-7.778439874654684, 113.27668722811634],
   },
-]
+];
 
 function Rating({ value }: { value: number }) {
-  const full = Math.round(value)
+  const full = Math.round(value);
   return (
     <div className="flex items-center gap-1">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className={`w-4 h-4 ${i < full ? "fill-yellow-400 text-yellow-400" : "text-yellow-400/40"}`} />
+        <Star
+          key={i}
+          className={`w-4 h-4 ${
+            i < full ? "fill-yellow-400 text-yellow-400" : "text-yellow-400/40"
+          }`}
+        />
       ))}
-      <span className="ml-1 text-xs font-semibold text-gray-700">{value.toFixed(1)}</span>
+      <span className="ml-1 text-xs font-semibold text-gray-700">
+        {value.toFixed(1)}
+      </span>
     </div>
-  )
+  );
 }
 
 function Spice({ level }: { level: Item["spicyLevel"] }) {
@@ -117,21 +138,34 @@ function Spice({ level }: { level: Item["spicyLevel"] }) {
           <span
             key={i}
             className={`h-2.5 w-6 rounded-full ${
-              i < level ? "bg-gradient-to-r from-red-500 to-orange-500" : "bg-gray-300"
+              i < level
+                ? "bg-gradient-to-r from-red-500 to-orange-500"
+                : "bg-gray-300"
             }`}
           />
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default function Culinary() {
-  const featured = items.filter((i) => i.featured)
-  const regular = items.filter((i) => !i.featured)
+  const featured = items.filter((item) => item.featured); // makanan unggulan
+  const regular = items.filter((item) => !item.featured); // makanan biasa
+
+  // const markers: MarkerData[] = items.map((c) => ({
+  //   id: c.id,
+  //   name: c.name,
+  //   category: c.category,
+  //   description: c.description,
+  //   position: c.position,
+  // }));
 
   return (
-    <section id="kuliner" className="py-20 px-6 bg-gradient-to-b from-orange-50 to-white">
+    <section
+      id="kuliner"
+      className="py-20 px-6 bg-gradient-to-b from-orange-50 to-white"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -143,13 +177,16 @@ export default function Culinary() {
             Sajian <span className="text-orange-500">Favorit</span> Probolinggo
           </h2>
           <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
-            Tata letak mirip Destinasi, namun dengan detail kuliner: level pedas, waktu saji, dan tag rasa.
+            Tata letak mirip Destinasi, namun dengan detail kuliner: level
+            pedas, waktu saji, dan tag rasa.
           </p>
         </div>
 
         {/* Featured grid */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-gray-800 mb-8">Menu Unggulan</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-8">
+            Menu Unggulan
+          </h3>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {featured.map((item, idx) => (
               <article
@@ -158,7 +195,11 @@ export default function Culinary() {
                   idx === 0 ? "lg:col-span-2" : ""
                 }`}
               >
-                <div className={`relative ${idx === 0 ? "h-96 lg:h-[28rem]" : "h-96"} overflow-hidden`}>
+                <div
+                  className={`relative ${
+                    idx === 0 ? "h-96 lg:h-[28rem]" : "h-96"
+                  } overflow-hidden`}
+                >
                   <Image
                     src={item.image || "/placeholder.svg"}
                     alt={item.name}
@@ -184,8 +225,12 @@ export default function Culinary() {
                   <div className="absolute -bottom-6 right-6 z-10">
                     <div className="w-28 h-28 rounded-full bg-gradient-to-br from-orange-500 to-red-500 text-white shadow-2xl flex items-center justify-center text-center p-3 border-4 border-white">
                       <div>
-                        <div className="text-[10px] uppercase tracking-wider">Mulai</div>
-                        <div className="text-sm font-extrabold leading-tight">{item.price}</div>
+                        <div className="text-[10px] uppercase tracking-wider">
+                          Mulai
+                        </div>
+                        <div className="text-sm font-extrabold leading-tight">
+                          {item.price}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -195,7 +240,9 @@ export default function Culinary() {
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-orange-300 transition-colors">
                       {item.name}
                     </h3>
-                    <p className="text-gray-200 line-clamp-2">{item.description}</p>
+                    <p className="text-gray-200 line-clamp-2">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
 
@@ -244,7 +291,9 @@ export default function Culinary() {
 
         {/* Regular grid */}
         <div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-8">Pilihan Lainnya</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-8">
+            Pilihan Lainnya
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regular.map((item) => (
               <article
@@ -285,7 +334,9 @@ export default function Culinary() {
                   <h4 className="text-xl font-bold text-gray-800 mb-1 group-hover:text-orange-500 transition-colors">
                     {item.name}
                   </h4>
-                  <p className="text-gray-600 mb-4 line-clamp-2">{item.description}</p>
+                  <p className="text-gray-600 mb-4 line-clamp-2">
+                    {item.description}
+                  </p>
 
                   <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
                     <div className="flex items-center gap-4">
@@ -295,7 +346,9 @@ export default function Culinary() {
                       </span>
                       <Spice level={item.spicyLevel} />
                     </div>
-                    <div className="text-orange-600 font-bold">{item.price}</div>
+                    <div className="text-orange-600 font-bold">
+                      {item.price}
+                    </div>
                   </div>
 
                   <div className="mb-5 flex flex-wrap gap-2">
@@ -317,8 +370,18 @@ export default function Culinary() {
               </article>
             ))}
           </div>
+          
+          {/* Map section */}
+          {/* <div className="mt-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-2xl font-bold text-gray-800">
+                Peta Destinasi
+              </h3>
+            </div>
+            <LeafletMap markers={markers} height={480} />
+          </div> */}
         </div>
       </div>
     </section>
-  )
+  );
 }
