@@ -271,7 +271,7 @@ export default function Destinations() {
         {/* Map section */}
         <div className="mt-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-2xl font-bold text-gray-800">Peta Destinasi</h3>
+            <h3 className="text-2xl font-bold text-gray-800">Peta Wisata</h3>
           </div>
           <LeafletMap markers={markers} height={480} />
         </div>

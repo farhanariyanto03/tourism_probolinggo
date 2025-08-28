@@ -112,7 +112,7 @@ export default function LeafletMap({ markers, height = 460 }: Props) {
   const defaultCenter: [number, number] = [-7.754, 113.215];
 
   return (
-    <div className="relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5">
+    <div className="relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 z-[1]">
       <MapContainer
         center={defaultCenter}
         zoom={12}
@@ -143,7 +143,7 @@ export default function LeafletMap({ markers, height = 460 }: Props) {
 
       {/* Modal Detail Wisata */}
       {selectedMarker && (
-        <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/50 p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-[9000] flex items-center justify-center bg-black/50 p-4 overflow-y-auto">
           <div className="bg-white rounded-lg max-w-md w-full shadow-lg overflow-hidden relative">
             {/* Tombol close di pojok */}
             <button
@@ -180,7 +180,7 @@ export default function LeafletMap({ markers, height = 460 }: Props) {
                 Koordinat: {selectedMarker.position[0].toFixed(5)},{" "}
                 {selectedMarker.position[1].toFixed(5)}
               </p>
-              
+
               <button
                 onClick={() => setSelectedMarker(null)}
                 className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"

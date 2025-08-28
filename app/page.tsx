@@ -2,6 +2,7 @@ import About from "@/components/about";
 import Culinary from "@/components/culinary";
 import Destinations from "@/components/destinations";
 import Events from "@/components/event";
+import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
 
@@ -23,6 +24,9 @@ export default function Home() {
       </section>
       <section id="events">
         <Events />
+      </section>
+      <section>
+        <Footer />
       </section>
     </>
   );

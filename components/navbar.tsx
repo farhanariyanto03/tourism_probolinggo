@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
-import { Menu, X } from 'lucide-react'
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black/20 backdrop-blur-md p-4 z-50 transition-all duration-300">
+    <nav className="fixed top-0 left-0 w-full bg-black/20 backdrop-blur-md p-4 z-[9999] transition-all duration-300">
       <div className="container mx-auto flex justify-between items-center px-4 lg:px-10">
         {/* Logo and Title */}
         <Link href="#" className="flex items-center group">
@@ -22,7 +22,10 @@ export default function Navbar() {
               className="rounded-full"
             />
           </div>
-          <h1 className="text-white text-xl ml-3 font-bold group-hover:text-orange-400 transition-colors duration-300" style={{ fontFamily: "Pacifico, cursive" }}>
+          <h1
+            className="text-white text-xl ml-3 font-bold group-hover:text-orange-400 transition-colors duration-300"
+            style={{ fontFamily: "Pacifico, cursive" }}
+          >
             Wisata Probolinggo
           </h1>
         </Link>
@@ -62,8 +65,8 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link 
-              href="#kontak" 
+            <Link
+              href="#kontak"
               className="text-white border-2 border-white rounded-full px-6 py-2 hover:bg-orange-400 hover:border-orange-400 hover:text-white transition-all duration-300 font-medium shadow-lg hover:shadow-orange-400/25"
             >
               Hubungi Kami
@@ -82,7 +85,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md">
+        <div className="md:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md z-[9998]">
           <ul className="flex flex-col space-y-4 p-6">
             <li>
               <Link
@@ -133,5 +136,5 @@ export default function Navbar() {
         </div>
       )}
     </nav>
-  )
+  );
 }

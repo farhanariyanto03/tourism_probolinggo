@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Utensils, Star, Clock, Flame, Tag, MapPin, Heart } from "lucide-react";
-// import LeafletMap, { type MarkerData } from "./leaflet-map";
+import LeafletMap, { type MarkerData } from "./leaflet-map";
 
 type Item = {
   id: number;
@@ -14,7 +14,7 @@ type Item = {
   rating: number;
   featured: boolean;
   tags: string[];
-  // position: [number, number];
+  position: [number, number];
 };
 
 const items: Item[] = [
@@ -31,7 +31,7 @@ const items: Item[] = [
     rating: 4.8,
     featured: true,
     tags: ["Gurih", "Pedas", "Autentik"],
-    // position: [-7.941558241556708, 112.95331253555966],
+    position: [-7.754, 113.215],
   },
   {
     id: 2,
@@ -46,7 +46,7 @@ const items: Item[] = [
     rating: 4.7,
     featured: true,
     tags: ["Hangat", "Rempah", "Segar"],
-    // position: [-7.941558241556708, 112.95331253555966],
+    position: [-7.755, 113.216],
   },
   {
     id: 3,
@@ -61,7 +61,7 @@ const items: Item[] = [
     rating: 4.9,
     featured: false,
     tags: ["Gurih", "Manis"],
-    // position: [-7.941558241556708, 112.95331253555966],
+    position: [-7.753, 113.214],
   },
   {
     id: 4,
@@ -76,7 +76,7 @@ const items: Item[] = [
     rating: 4.5,
     featured: false,
     tags: ["Hangat", "Gurih"],
-    // position: [-7.941558241556708, 112.95331253555966],
+    position: [-7.756, 113.217],
   },
   {
     id: 5,
@@ -91,7 +91,7 @@ const items: Item[] = [
     rating: 4.4,
     featured: false,
     tags: ["Rempah", "Gurih"],
-    // position: [-7.941558241556708, 112.95331253555966],
+    position: [-7.752, 113.213],
   },
   {
     id: 6,
@@ -106,7 +106,7 @@ const items: Item[] = [
     rating: 4.6,
     featured: false,
     tags: ["Gurih", "Rempah", "Hangat"],
-    // position: [-7.778439874654684, 113.27668722811634],
+    position: [-7.757, 113.218],
   },
 ];
 
@@ -153,13 +153,13 @@ export default function Culinary() {
   const featured = items.filter((item) => item.featured); // makanan unggulan
   const regular = items.filter((item) => !item.featured); // makanan biasa
 
-  // const markers: MarkerData[] = items.map((c) => ({
-  //   id: c.id,
-  //   name: c.name,
-  //   category: c.category,
-  //   description: c.description,
-  //   position: c.position,
-  // }));
+  const markers: MarkerData[] = items.map((c) => ({
+    id: c.id,
+    name: c.name,
+    category: c.category,
+    description: c.description,
+    position: c.position,
+  }));
 
   return (
     <section
@@ -370,16 +370,14 @@ export default function Culinary() {
               </article>
             ))}
           </div>
-          
+
           {/* Map section */}
-          {/* <div className="mt-6">
+          <div className="mt-16">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold text-gray-800">
-                Peta Destinasi
-              </h3>
+              <h3 className="text-2xl font-bold text-gray-800">Peta Kuliner</h3>
             </div>
             <LeafletMap markers={markers} height={480} />
-          </div> */}
+          </div>
         </div>
       </div>
     </section>
