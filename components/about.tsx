@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { Users, MapPin, Award, Camera, icons } from "lucide-react";
-import { stat } from "fs";
+import { Users, MapPin, Award, Camera } from "lucide-react";
 
 const stats = [
   {
