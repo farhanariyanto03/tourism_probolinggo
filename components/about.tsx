@@ -74,7 +74,7 @@ export default function About() {
           <div className="relative">
             <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/assets/images/bromo1.jpg"
+                src="/assets/images/destination/bromo1.jpg"
                 alt="Pemandangan Probolinggo"
                 fill
                 className="object-cover"
