@@ -9,8 +9,8 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'My App',
-  description: 'Example using Poppins',
+  title: 'Tourism Probolinggo',
+  description: 'Discover the beauty and culinary delights of Probolinggo, Indonesia.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
