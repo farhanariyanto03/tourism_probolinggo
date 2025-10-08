@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { Utensils, Star, Clock, Flame, Tag, MapPin, Heart } from "lucide-react";
-import LeafletMap, { type MarkerData } from "./leaflet-map";
+import { useEffect, useRef } from "react";
 
 type Item = {
   id: number;
@@ -149,17 +151,86 @@ function Spice({ level }: { level: Item["spicyLevel"] }) {
   );
 }
 
+// Simple map component using CDN
+const SimpleMap = ({ items }: { items: Item[] }) => {
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    // Load Leaflet CSS and JS from CDN
+    const loadLeaflet = async () => {
+      // Load CSS
+      if (!document.querySelector('link[href*="leaflet"]')) {
+        const cssLink = document.createElement("link");
+        cssLink.rel = "stylesheet";
+        cssLink.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(cssLink);
+      }
+
+      // Load JS
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (!(window as any).L) {
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        document.head.appendChild(script);
+
+        script.onload = () => {
+          initMap();
+        };
+      } else {
+        initMap();
+      }
+    };
+
+    const initMap = () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const L = (window as any).L;
+
+      // Center map on Probolinggo area
+      const map = L.map(mapRef.current).setView([-7.755, 113.215], 12);
+
+      // Add tile layer
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+
+      // Add markers for each culinary item
+      items.forEach((item) => {
+        const marker = L.marker(item.position).addTo(map);
+        marker.bindPopup(`
+          <div style="min-width: 200px;">
+            <h3 style="margin: 0 0 8px 0; color: #f97316;">${item.name}</h3>
+            <p style="margin: 0 0 8px 0; color: #666; font-size: 14px;">${
+              item.category
+            }</p>
+            <p style="margin: 0 0 8px 0; color: #333; font-size: 13px;">${item.description.substring(
+              0,
+              100
+            )}...</p>
+            <p style="margin: 0; color: #f97316; font-weight: bold; font-size: 14px;">${
+              item.price
+            }</p>
+          </div>
+        `);
+      });
+    };
+
+    loadLeaflet();
+  }, [items]);
+
+  return (
+    <div
+      ref={mapRef}
+      className="w-full rounded-xl overflow-hidden shadow-lg border"
+      style={{ height: "480px" }}
+    />
+  );
+};
+
 export default function Culinary() {
   const featured = items.filter((item) => item.featured); // makanan unggulan
   const regular = items.filter((item) => !item.featured); // makanan biasa
-
-  const markers: MarkerData[] = items.map((c) => ({
-    id: c.id,
-    name: c.name,
-    category: c.category,
-    description: c.description,
-    position: c.position,
-  }));
 
   return (
     <section
@@ -376,7 +447,7 @@ export default function Culinary() {
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-2xl font-bold text-gray-800">Peta Kuliner</h3>
             </div>
-            <LeafletMap markers={markers} height={480} />
+            <SimpleMap items={items} />
           </div>
         </div>
       </div>

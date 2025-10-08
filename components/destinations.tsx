@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { MapPin, Clock, Star, Camera, Heart } from "lucide-react";
-import LeafletMap, { type MarkerData } from "./leaflet-map";
+import { useEffect, useRef } from "react";
 
 type Destination = {
   id: number;
@@ -107,17 +109,83 @@ const destinations: Destination[] = [
   },
 ];
 
+// Simple map component using CDN
+const SimpleMap = ({ destinations }: { destinations: Destination[] }) => {
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    // Load Leaflet CSS and JS from CDN
+    const loadLeaflet = async () => {
+      // Load CSS
+      if (!document.querySelector('link[href*="leaflet"]')) {
+        const cssLink = document.createElement("link");
+        cssLink.rel = "stylesheet";
+        cssLink.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(cssLink);
+      }
+
+      // Load JS
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (!(window as any).L) {
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        document.head.appendChild(script);
+
+        script.onload = () => {
+          initMap();
+        };
+      } else {
+        initMap();
+      }
+    };
+
+    const initMap = () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const L = (window as any).L;
+
+      // Center map on Probolinggo area
+      const map = L.map(mapRef.current).setView([-7.9, 113.0], 10);
+
+      // Add tile layer
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+
+      // Add markers for each destination
+      destinations.forEach((dest) => {
+        const marker = L.marker(dest.position).addTo(map);
+        marker.bindPopup(`
+          <div style="min-width: 200px;">
+            <h3 style="margin: 0 0 8px 0; color: #f97316;">${dest.name}</h3>
+            <p style="margin: 0 0 8px 0; color: #666; font-size: 14px;">${
+              dest.category
+            }</p>
+            <p style="margin: 0; color: #333; font-size: 13px;">${dest.description.substring(
+              0,
+              100
+            )}...</p>
+          </div>
+        `);
+      });
+    };
+
+    loadLeaflet();
+  }, [destinations]);
+
+  return (
+    <div
+      ref={mapRef}
+      className="w-full rounded-xl overflow-hidden shadow-lg border"
+      style={{ height: "480px" }}
+    />
+  );
+};
+
 export default function Destinations() {
   const featuredDestinations = destinations.filter((dest) => dest.featured);
   const regularDestinations = destinations.filter((dest) => !dest.featured);
-
-  const markers: MarkerData[] = destinations.map((d) => ({
-    id: d.id,
-    name: d.name,
-    category: d.category,
-    description: d.description,
-    position: d.position,
-  }));
 
   return (
     <section
@@ -273,7 +341,7 @@ export default function Destinations() {
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-2xl font-bold text-gray-800">Peta Wisata</h3>
           </div>
-          <LeafletMap markers={markers} height={480} />
+          <SimpleMap destinations={destinations} />
         </div>
       </div>
     </section>
